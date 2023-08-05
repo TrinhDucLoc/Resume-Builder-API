@@ -92,11 +92,5 @@ public class CVController {
         return new ResponseEntity<>("CV deleted successfully", HttpStatus.OK);
     }
 
-    @ApiOperation("Get All User REST API")
-    @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping
-    public List<UserDTO> getAllUser(){
-        return cvService.getAllUser();
-    }
 
 }

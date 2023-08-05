@@ -21,5 +21,4 @@ public interface CVService {
 
     List<UserDTO> getAllUser();
 
-
 }

@@ -61,9 +61,7 @@ public class CVController {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
         String username = userDetails.getUsername();
-
         User user = userRepository.findByUsername(username);
-
         Long userId = user.getId();
         return cvService.getCVByUserID(userId);
     }
@@ -80,7 +78,13 @@ public class CVController {
     @PutMapping("/{id}")
     public ResponseEntity<CVDTO> updateCVById(@PathVariable(value = "id") Long id,
                                                                @Valid @RequestBody CVDTO cvdto){
-        return new ResponseEntity<>(cvService.updateCVById(id, cvdto), HttpStatus.CREATED);
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        String username = userDetails.getUsername();
+        User user = userRepository.findByUsername(username);
+        Long userId = user.getId();
+
+        return new ResponseEntity<>(cvService.updateCVById(id, cvdto, userId), HttpStatus.CREATED);
     }
 
 

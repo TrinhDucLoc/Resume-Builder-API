@@ -53,9 +53,7 @@ public class CVImpl implements CVService {
 
     @Override
     public List<CVDTO> getCVByUserID(Long userId){
-        //        retrieved order by user id
         List<CV> cvs = cvRepository.findByUserId(userId);
-//        return convert to list of order entity to order DTO response
         return cvs.stream().map(cv -> modelMapper.map(cv, CVDTO.class))
                 .collect(Collectors.toList());
     }
@@ -67,12 +65,16 @@ public class CVImpl implements CVService {
     }
 
     @Override
-    public CVDTO updateCVById(Long id, CVDTO CVDTO){
+    public CVDTO updateCVById(Long id, CVDTO CVDTO, Long userId){
 
         CV cv = cvRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("CV", "id", id));
 
         CV cvInput = modelMapper.map(CVDTO, CV.class);
         cvInput.setId(cv.getId());
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("User", "id", userId)
+        );
+        cv.setUser(user);
         CV newCV = cvRepository.save(cvInput);
 
         return modelMapper.map(newCV, CVDTO.class);

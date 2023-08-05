@@ -1,0 +1,64 @@
+# Maven
+# Build your Java project and run tests with Apache Maven.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+#trigger:
+#  branches:
+#    include:
+#      - master
+trigger:
+  none
+
+resources:
+  containers:
+    - container: maven
+      image: hcvnazureregistry.azurecr.io/maven:3.6.1-java11-azdevops
+      endpoint: acr
+  repositories:
+    - repository: templates
+      type: git
+      name: Azure_pipeline_template/templates
+variables:
+  - group: GITLABTOKEN
+  - group: RegistryEITzone
+  - name: imageName
+    value: techco/vbcls/backend-ecommerce
+  - name: TAG
+    value: "master-$(Build.BuildNumber)"
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+#  - stage: Build
+#    displayName: 'Build CI'
+#    jobs:
+#      - template: Build_template_teco/maven_build_ci.yml@templates
+#        parameters:
+#          goal: 'clean install -DskipTests'
+#          java_version: '1.11'
+#
+#  - stage: Docker
+#    displayName: 'Build Docker Image'
+#    dependsOn: Build
+#    jobs:
+#      - template: Build_template_teco/build_docker_image.yml@templates
+#        parameters:
+#          imageName: '$(imageName)'
+#          tag_version: '$(TAG)'
+
+  - stage: Deploy
+    displayName: 'Deploy K8s-PRE-PROD'
+#    dependsOn:
+#      - Docker
+#    condition: succeeded('Docker')
+    jobs:
+      - template: Build_template_teco/deploy_k8s_pre_prod_vault.yml@templates
+        parameters:
+          checkout_repo: git://Technical-Components/ecommerce_home_racer
+          env: uat
+          type_cluster_name: uat
+          environment_deploy: uat
+          environment_app: backend-ecommerce
+          app_name: vbcls-api

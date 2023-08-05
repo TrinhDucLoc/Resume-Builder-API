@@ -1,5 +1,6 @@
 package com.springboot.ecommerce.Resume.entity.CV;
 
+import com.springboot.ecommerce.entity.User;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,10 +30,8 @@ public class CV {
     private CVEducation education;
     private String skills;
 
-//    private String education;
-//    private String experience;
-//    private String information;
-//    private String skill;
-//    private String summary;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
 }

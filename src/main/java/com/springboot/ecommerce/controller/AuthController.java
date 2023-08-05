@@ -75,7 +75,7 @@ public class AuthController {
     }
 
     @ApiOperation(value = "REST API to Register or Signup user to Blog ad .pp")
-    @PostMapping("/register")
+    @PostMapping("/registerAdmin")
     public ResponseEntity<?> registerAdmin(@RequestBody RegisterRequest registerRequest){
 
         // add check for username exists in a DB
@@ -168,4 +168,6 @@ public class AuthController {
 
         return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
     }
+
+
 }

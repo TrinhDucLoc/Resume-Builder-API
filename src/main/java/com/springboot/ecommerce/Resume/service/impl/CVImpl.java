@@ -2,6 +2,9 @@ package com.springboot.ecommerce.Resume.service.impl;
 
 
 import com.springboot.ecommerce.Resume.entity.CV.CV;
+import com.springboot.ecommerce.dto.OrderResponse;
+import com.springboot.ecommerce.entity.Order;
+import com.springboot.ecommerce.entity.User;
 import com.springboot.ecommerce.exception.ResourceNotFoundException;
 import com.springboot.ecommerce.Resume.dto.CVDTO;
 import com.springboot.ecommerce.Resume.repository.CVRepository;
@@ -29,8 +32,13 @@ public class CVImpl implements CVService {
     }
 
     @Override
-    public CVDTO createCV(CVDTO cvdto) {
+    public CVDTO createCV(CVDTO cvdto, Long userId) {
         CV cv = modelMapper.map(cvdto, CV.class);
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("User", "id", userId)
+        );
+        cv.setUser(user);
+
         CV newCV = cvRepository.save(cv);
         return modelMapper.map(newCV, CVDTO.class);
     }
@@ -38,6 +46,15 @@ public class CVImpl implements CVService {
     @Override
     public List<CVDTO> getAllCV(){
         List<CV> cvs = cvRepository.findAll();
+        return cvs.stream().map(cv -> modelMapper.map(cv, CVDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<CVDTO> getCVByUserID(Long userId){
+        //        retrieved order by user id
+        List<CV> cvs = cvRepository.findByUserId(userId);
+//        return convert to list of order entity to order DTO response
         return cvs.stream().map(cv -> modelMapper.map(cv, CVDTO.class))
                 .collect(Collectors.toList());
     }

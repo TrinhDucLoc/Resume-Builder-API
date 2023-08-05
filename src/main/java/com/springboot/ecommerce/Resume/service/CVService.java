@@ -6,9 +6,11 @@ import java.util.List;
 
 
 public interface CVService {
-    CVDTO createCV(CVDTO cvdto);
+    CVDTO createCV(CVDTO cvdto, Long userId);
 
     List<CVDTO> getAllCV();
+
+    List<CVDTO> getCVByUserID(Long userId);
 
     CVDTO getCVById(Long id);
 

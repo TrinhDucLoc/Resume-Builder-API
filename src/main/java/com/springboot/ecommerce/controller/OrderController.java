@@ -38,6 +38,7 @@ public class OrderController {
     @ApiOperation(value = "Create product REST API")
     @PostMapping("")
     public ResponseEntity<OrderResponse> createOrder(@Valid @RequestBody OrderRequest orderRequest){
+
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
         try {

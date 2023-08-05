@@ -1,5 +1,6 @@
 package com.springboot.ecommerce.entity;
 
+import com.springboot.ecommerce.Resume.entity.CV.CV;
 import com.springboot.ecommerce.entity.address.Address;
 import lombok.Data;
 
@@ -40,5 +41,8 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Address> addresses = new HashSet<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<CV> cvs = new HashSet<>();
 
 }

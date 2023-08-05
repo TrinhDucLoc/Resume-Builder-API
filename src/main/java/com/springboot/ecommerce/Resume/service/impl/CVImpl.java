@@ -1,6 +1,7 @@
 package com.springboot.ecommerce.Resume.service.impl;
 
 
+import com.springboot.ecommerce.Resume.dto.UserDTO;
 import com.springboot.ecommerce.Resume.entity.CV.CV;
 import com.springboot.ecommerce.dto.OrderResponse;
 import com.springboot.ecommerce.entity.Order;
@@ -82,5 +83,12 @@ public class CVImpl implements CVService {
     public void deleteCVById(Long id){
         CV cv = cvRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("CV", "id", id));
         cvRepository.delete(cv);
+    }
+
+    @Override
+    public List<UserDTO> getAllUser(){
+        List<User> users = userRepository.findAll();
+        return users.stream().map(user -> modelMapper.map(user, UserDTO.class))
+                .collect(Collectors.toList());
     }
 }

@@ -1,6 +1,7 @@
 package com.springboot.ecommerce.Resume.service;
 
 import com.springboot.ecommerce.Resume.dto.CVDTO;
+import com.springboot.ecommerce.Resume.dto.UserDTO;
 
 import java.util.List;
 
@@ -17,6 +18,8 @@ public interface CVService {
     CVDTO updateCVById(Long id, CVDTO CVDTO);
 
     void deleteCVById(Long id);
+
+    List<UserDTO> getAllUser();
 
 
 }

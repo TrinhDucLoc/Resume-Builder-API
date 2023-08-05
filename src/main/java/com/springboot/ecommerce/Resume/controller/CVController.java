@@ -1,6 +1,7 @@
 package com.springboot.ecommerce.Resume.controller;
 
 import com.springboot.ecommerce.Resume.dto.CVDTO;
+import com.springboot.ecommerce.Resume.dto.UserDTO;
 import com.springboot.ecommerce.Resume.service.CVService;
 import com.springboot.ecommerce.dto.CategoryResponse;
 import com.springboot.ecommerce.dto.OrderResponse;
@@ -91,6 +92,11 @@ public class CVController {
         return new ResponseEntity<>("CV deleted successfully", HttpStatus.OK);
     }
 
-
+    @ApiOperation("Get All User REST API")
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping
+    public List<UserDTO> getAllUser(){
+        return cvService.getAllUser();
+    }
 
 }

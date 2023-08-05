@@ -2,10 +2,13 @@ package com.springboot.ecommerce.Resume.controller;
 
 import com.springboot.ecommerce.Resume.dto.CVDTO;
 import com.springboot.ecommerce.Resume.service.CVService;
+import com.springboot.ecommerce.dto.CategoryResponse;
+import com.springboot.ecommerce.payload.CategoryRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -44,6 +47,13 @@ public class CVController {
         return ResponseEntity.ok(cvService.getCVById(id));
     }
 
+    //    Update category by id
+    @ApiOperation("Update CV By Id REST API")
+    @PutMapping("/{id}")
+    public ResponseEntity<CVDTO> updateCVById(@PathVariable(value = "id") Long id,
+                                                               @Valid @RequestBody CVDTO cvdto){
+        return new ResponseEntity<>(cvService.updateCVById(id, cvdto), HttpStatus.CREATED);
+    }
 
 
 //    Delete category by id

@@ -48,18 +48,17 @@ public class CVImpl implements CVService {
         return modelMapper.map(cv, CVDTO.class);
     }
 
-//    @Override
-//    public CVDTO updateCVById(Long id, CVDTO CVDTO){
-//
-//        CV cv = cvRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("CV", "id", id));
-//
-////        cv.s(categoryRequest.getName());
-//        cv.
-//
-//        CV updateCv = cvRepository.save(cv);
-//
-//        return modelMapper.map(updateCv, CVDTO.class);
-//    }
+    @Override
+    public CVDTO updateCVById(Long id, CVDTO CVDTO){
+
+        CV cv = cvRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("CV", "id", id));
+
+        CV cvInput = modelMapper.map(CVDTO, CV.class);
+        cvInput.setId(cv.getId());
+        CV newCV = cvRepository.save(cvInput);
+
+        return modelMapper.map(newCV, CVDTO.class);
+    }
 
 
     @Override

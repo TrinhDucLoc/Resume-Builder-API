@@ -12,6 +12,8 @@ public interface CVService {
 
     CVDTO getCVById(Long id);
 
+    CVDTO updateCVById(Long id, CVDTO CVDTO);
+
     void deleteCVById(Long id);
 
 

@@ -74,9 +74,9 @@ public class AuthController {
         }
     }
 
-    @ApiOperation(value = "REST API to Register or Signup user to Blog app")
+    @ApiOperation(value = "REST API to Register or Signup user to Blog ad .pp")
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@RequestBody RegisterRequest registerRequest){
+    public ResponseEntity<?> registerAdmin(@RequestBody RegisterRequest registerRequest){
 
         // add check for username exists in a DB
         if(userRepository.existsByUsername(registerRequest.getUsername())){
@@ -131,6 +131,37 @@ public class AuthController {
 //        user.setPhoneNumber(registerRequest.getPhoneNumber());
 
         Role roles = roleRepository.findByName("ROLE_SHIPPER").get();
+        user.setRoles(Collections.singleton(roles));
+
+        userRepository.save(user);
+
+        return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "REST API to Register or Signup user to Blog app")
+    @PostMapping("/registerUser")
+    public ResponseEntity<?> registerUser(@RequestBody RegisterRequest registerRequest){
+
+        // add check for username exists in a DB
+        if(userRepository.existsByUsername(registerRequest.getUsername())){
+            return new ResponseEntity<>("Username is already taken!", HttpStatus.BAD_REQUEST);
+        }
+
+        // add check for email exists in DB
+        if(userRepository.existsByEmail(registerRequest.getEmail())){
+            return new ResponseEntity<>("Email is already taken!", HttpStatus.BAD_REQUEST);
+        }
+
+        // create user object
+        User user = new User();
+//        user.setName(registerRequest.getName());
+        user.setUsername(registerRequest.getUsername());
+        user.setEmail(registerRequest.getEmail());
+        user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
+//        user.setAddress(registerRequest.getAddress());
+//        user.setPhoneNumber(registerRequest.getPhoneNumber());
+
+        Role roles = roleRepository.findByName("ROLE_USER").get();
         user.setRoles(Collections.singleton(roles));
 
         userRepository.save(user);

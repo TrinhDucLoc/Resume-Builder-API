@@ -1,4 +1,4 @@
-package com.springboot.ecommerce.ResumeBuilderAPI.dto;
+package com.springboot.ecommerce.dto;
 
 public class UserDTO {
     private long id;

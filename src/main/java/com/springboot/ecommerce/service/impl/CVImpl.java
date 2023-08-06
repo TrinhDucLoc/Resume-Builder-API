@@ -1,14 +1,14 @@
-package com.springboot.ecommerce.ResumeBuilderAPI.service.impl;
+package com.springboot.ecommerce.service.impl;
 
 
-import com.springboot.ecommerce.ResumeBuilderAPI.dto.UserDTO;
-import com.springboot.ecommerce.ResumeBuilderAPI.entity.CV.CV;
+import com.springboot.ecommerce.dto.UserDTO;
+import com.springboot.ecommerce.entity.CV.CV;
 import com.springboot.ecommerce.entity.User;
 import com.springboot.ecommerce.exception.ResourceNotFoundException;
-import com.springboot.ecommerce.ResumeBuilderAPI.dto.CVDTO;
-import com.springboot.ecommerce.ResumeBuilderAPI.repository.CVRepository;
+import com.springboot.ecommerce.dto.CVDTO;
+import com.springboot.ecommerce.repository.CVRepository;
 import com.springboot.ecommerce.repository.UserRepository;
-import com.springboot.ecommerce.ResumeBuilderAPI.service.CVService;
+import com.springboot.ecommerce.service.CVService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
-package com.springboot.ecommerce.ResumeBuilderAPI.service;
+package com.springboot.ecommerce.service;
 
-import com.springboot.ecommerce.ResumeBuilderAPI.dto.CVDTO;
-import com.springboot.ecommerce.ResumeBuilderAPI.dto.UserDTO;
+import com.springboot.ecommerce.dto.CVDTO;
+import com.springboot.ecommerce.dto.UserDTO;
 
 import java.util.List;
 

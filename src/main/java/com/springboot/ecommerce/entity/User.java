@@ -1,6 +1,6 @@
 package com.springboot.ecommerce.entity;
 
-import com.springboot.ecommerce.ResumeBuilderAPI.entity.CV.CV;
+import com.springboot.ecommerce.entity.CV.CV;
 import com.springboot.ecommerce.entity.address.Address;
 import lombok.Data;
 

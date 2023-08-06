@@ -1,9 +1,9 @@
-package com.springboot.ecommerce.ResumeBuilderAPI.dto;
+package com.springboot.ecommerce.dto;
 
 
-import com.springboot.ecommerce.ResumeBuilderAPI.entity.CV.CVEducation;
-import com.springboot.ecommerce.ResumeBuilderAPI.entity.CV.CVExperience;
-import com.springboot.ecommerce.ResumeBuilderAPI.entity.CV.CVInformation;
+import com.springboot.ecommerce.entity.CV.CVEducation;
+import com.springboot.ecommerce.entity.CV.CVExperience;
+import com.springboot.ecommerce.entity.CV.CVInformation;
 import io.swagger.annotations.Api;
 import lombok.*;
 

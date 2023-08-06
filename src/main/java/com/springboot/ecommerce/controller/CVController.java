@@ -1,7 +1,7 @@
-package com.springboot.ecommerce.ResumeBuilderAPI.controller;
+package com.springboot.ecommerce.controller;
 
-import com.springboot.ecommerce.ResumeBuilderAPI.dto.CVDTO;
-import com.springboot.ecommerce.ResumeBuilderAPI.service.CVService;
+import com.springboot.ecommerce.dto.CVDTO;
+import com.springboot.ecommerce.service.CVService;
 import com.springboot.ecommerce.entity.User;
 import com.springboot.ecommerce.repository.UserRepository;
 import io.swagger.annotations.Api;

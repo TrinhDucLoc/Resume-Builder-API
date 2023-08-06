@@ -1,6 +1,6 @@
-package com.springboot.ecommerce.ResumeBuilderAPI.repository;
+package com.springboot.ecommerce.repository;
 
-import com.springboot.ecommerce.ResumeBuilderAPI.entity.CV.CV;
+import com.springboot.ecommerce.entity.CV.CV;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

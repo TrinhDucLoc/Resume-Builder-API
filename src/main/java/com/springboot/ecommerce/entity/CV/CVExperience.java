@@ -1,4 +1,4 @@
-package com.springboot.ecommerce.ResumeBuilderAPI.entity.CV;
+package com.springboot.ecommerce.entity.CV;
 
 import lombok.Getter;
 import lombok.Setter;
